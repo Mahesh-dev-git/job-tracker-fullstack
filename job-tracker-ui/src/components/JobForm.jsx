@@ -1,3 +1,5 @@
+
+import "./JobForm.css";
 import { useState, useEffect } from "react";
 
 function JobForm({ onCreate , editJob }) {
@@ -27,36 +29,45 @@ function JobForm({ onCreate , editJob }) {
   };
 
   return (
-    <div>
-     <h3>{editJob ? "Edit Job" : "Add Job"}</h3>
-
-      <input
-        placeholder="Company"
-        value={company}
-        onChange={(e) => setCompany(e.target.value)}
-      />
-
-      <br /><br />
-
-      <input
-        placeholder="Position"
-        value={position}
-        onChange={(e) => setPosition(e.target.value)}
-      />
-
-      <br /><br />
-
-      <input
-        placeholder="Status"
-        value={status}
-        onChange={(e) => setStatus(e.target.value)}
-      />
-
-      <br /><br />
-
-      <button onClick={handleSubmit}>
-  {editJob ? "Update Job" : "Add Job"}
-</button>
+    <div className="job-form-card">
+      <h3 className="job-form-title">{editJob ? "Edit Job" : "Add Job"}</h3>
+      <form className="job-form" onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}>
+        <div className="form-group">
+          <input
+            className="form-input"
+            type="text"
+            placeholder="Company"
+            value={company}
+            onChange={(e) => setCompany(e.target.value)}
+          />
+        </div>
+        <div className="form-group">
+          <input
+            className="form-input"
+            type="text"
+            placeholder="Position"
+            value={position}
+            onChange={(e) => setPosition(e.target.value)}
+          />
+        </div>
+        <div className="form-group">
+          <select
+            className="form-input form-select"
+            value={status}
+            onChange={(e) => setStatus(e.target.value)}
+          >
+            <option value="">Select Status</option>
+            <option value="Applied">Applied</option>
+            <option value="Interview">Interview</option>
+            <option value="Offer">Offer</option>
+            <option value="Rejected">Rejected</option>
+            <option value="Closed">Closed</option>
+          </select>
+        </div>
+        <button className="form-submit-btn" type="submit">
+          {editJob ? "Update Job" : "Add Job"}
+        </button>
+      </form>
     </div>
   );
 }

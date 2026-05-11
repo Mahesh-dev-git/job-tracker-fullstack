@@ -1,0 +1,115 @@
+/*
+  Login.css — Dark Glass Card Aesthetic
+  Only for Login.jsx. Do not import elsewhere.
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Syne:wght@700&display=swap');
+
+.login-bg {
+  min-height: 100vh;
+  width: 100vw;
+  background: radial-gradient(ellipse at 50% 30%, rgba(99,102,241,0.25) 0%, rgba(139,92,246,0.18) 40%, #0f172a 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'DM Sans', Arial, sans-serif;
+}
+
+.login-card {
+  background: rgba(17, 24, 39, 0.82);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-radius: 1.5rem;
+  border: 1px solid rgba(255,255,255,0.10);
+  box-shadow: 0 8px 32px 0 rgba(99,102,241,0.18), 0 1.5px 8px 0 rgba(139,92,246,0.10);
+  max-width: 420px;
+  width: 100%;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  animation: login-fade-in 0.8s cubic-bezier(.4,1.2,.6,1) both;
+}
+
+@keyframes login-fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.login-heading {
+  font-family: 'Syne', Arial, sans-serif;
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  margin-bottom: 0.25em;
+  text-align: center;
+}
+
+.login-subtext {
+  color: #cbd5e1;
+  font-size: 1rem;
+  text-align: center;
+  margin-bottom: 0.5em;
+  font-family: 'DM Sans', Arial, sans-serif;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.login-input {
+  width: 100%;
+  background: #1e293b;
+  color: #fff;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  padding: 14px 16px;
+  font-size: 1rem;
+  font-family: 'DM Sans', Arial, sans-serif;
+  transition: box-shadow 0.2s, border 0.2s;
+  box-shadow: 0 0 0 0 rgba(99,102,241,0);
+}
+
+.login-input::placeholder {
+  color: #64748b;
+  opacity: 1;
+}
+
+.login-input:focus {
+  border: 1.5px solid #6366f1;
+  box-shadow: 0 0 0 2px #6366f1aa;
+  background: #232946;
+}
+
+.login-btn {
+  width: 100%;
+  background: linear-gradient(90deg, #6366f1 0%, #8b5cf6 100%);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 1rem;
+  padding: 14px;
+  margin-top: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 18px 0 rgba(99,102,241,0.13);
+  transition: transform 0.2s cubic-bezier(.4,1.2,.6,1), box-shadow 0.2s, background 0.2s;
+}
+
+.login-btn:hover, .login-btn:focus {
+  transform: translateY(-2px) scale(1.01);
+  background: linear-gradient(90deg, #818cf8 0%, #a78bfa 100%);
+  box-shadow: 0 8px 32px 0 rgba(139,92,246,0.18);
+}
+
+/* For error/success messages, add your own classes as needed */

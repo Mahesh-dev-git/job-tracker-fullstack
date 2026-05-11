@@ -1,3 +1,5 @@
+
+import "./Dashboard.css";
 import { useEffect, useState } from "react";
 import API from "../services/api";
 import JobForm from "../components/JobForm";
@@ -72,22 +74,29 @@ const updateJob = async (id, jobData) => {
 
 
   return (
-    <div>
-      <h2>Dashboard Page</h2>
-
-
-<JobForm 
-  onCreate={createJob}
-  editJob={editJob}
-  onUpdate={updateJob}
-/>
-
-     <JobList 
-  jobs={jobs} 
-  onDelete={deleteJob} 
-  onEdit={handleEdit}
-/>
-     
+    <div className="dashboard-page">
+      <nav className="dashboard-navbar">
+        <h1 className="navbar-title">Job Tracker</h1>
+        <div className="navbar-avatar"></div>
+      </nav>
+      <div className="dashboard-container">
+        <div className="dashboard-grid">
+          <aside className="dashboard-sidebar">
+            <JobForm 
+              onCreate={createJob}
+              editJob={editJob}
+              onUpdate={updateJob}
+            />
+          </aside>
+          <main className="dashboard-main">
+            <JobList 
+              jobs={jobs} 
+              onDelete={deleteJob} 
+              onEdit={handleEdit}
+            />
+          </main>
+        </div>
+      </div>
     </div>
   );
 }

@@ -1,0 +1,121 @@
+/* JobForm.css */
+
+:root {
+  --bg: #0d1117;
+  --surface: #161b22;
+  --surface-2: #21262d;
+  --border: rgba(255, 255, 255, 0.08);
+  --accent: #4f8ef7;
+  --accent-2: #a371f7;
+  --success: #3fb950;
+  --danger: #f85149;
+  --warning: #d29922;
+  --text-primary: #e6edf3;
+  --text-muted: #8b949e;
+}
+
+.job-form-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  animation: form-slide-in 0.6s ease-out 0.15s both;
+}
+
+@keyframes form-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.job-form-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+  padding-bottom: 12px;
+  border-left: 3px solid var(--accent);
+  padding-left: 12px;
+}
+
+.job-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-input {
+  background: var(--surface-2);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 13px 16px;
+  font-size: 1rem;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  outline: none;
+  transition: box-shadow 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.form-input::placeholder {
+  color: var(--text-muted);
+}
+
+.form-input:focus {
+  border-color: var(--accent);
+  background: #1a1f26;
+  box-shadow: 0 0 0 3px rgba(79, 142, 247, 0.15);
+}
+
+.form-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238b949e' d='M1.5 4.5L6 9l4.5-4.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
+}
+
+.form-select option {
+  background: var(--surface-2);
+  color: var(--text-primary);
+}
+
+.form-submit-btn {
+  background: linear-gradient(90deg, var(--accent) 0%, var(--accent-2) 100%);
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  padding: 13px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  transition: brightness 0.2s, transform 0.2s;
+  margin-top: 8px;
+}
+
+.form-submit-btn:hover,
+.form-submit-btn:focus {
+  brightness: brightness(1.1);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(79, 142, 247, 0.25);
+}
+
+.form-submit-btn:active {
+  transform: translateY(0);
+}
+

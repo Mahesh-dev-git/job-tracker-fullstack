@@ -1,0 +1,233 @@
+/* JobList.css */
+
+:root {
+  --bg: #0d1117;
+  --surface: #161b22;
+  --surface-2: #21262d;
+  --border: rgba(255, 255, 255, 0.08);
+  --accent: #4f8ef7;
+  --accent-2: #a371f7;
+  --success: #3fb950;
+  --danger: #f85149;
+  --warning: #d29922;
+  --text-primary: #e6edf3;
+  --text-muted: #8b949e;
+}
+
+.job-list-section {
+  animation: list-slide-in 0.6s ease-out 0.25s both;
+}
+
+@keyframes list-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.job-list-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.job-list-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+  padding: 0;
+}
+
+.job-count-badge {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  padding: 4px 12px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+}
+
+.job-cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.job-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+  gap: 20px;
+  animation: card-fade-in 0.4s ease-out both;
+}
+
+.job-card:nth-child(1) {
+  animation-delay: 0.3s;
+}
+
+.job-card:nth-child(2) {
+  animation-delay: 0.35s;
+}
+
+.job-card:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+.job-card:nth-child(n+4) {
+  animation-delay: calc(0.4s + (var(--index, 3) - 3) * 0.05s);
+}
+
+@keyframes card-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.job-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 16px rgba(79, 142, 247, 0.1);
+}
+
+.job-card-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.job-company {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.job-position {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.job-card-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.status-badge {
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.status-applied {
+  background: rgba(79, 142, 247, 0.15);
+  color: var(--accent);
+}
+
+.status-interview {
+  background: rgba(163, 113, 247, 0.15);
+  color: var(--accent-2);
+}
+
+.status-offer {
+  background: rgba(63, 185, 80, 0.15);
+  color: var(--success);
+}
+
+.status-rejected {
+  background: rgba(248, 81, 73, 0.15);
+  color: var(--danger);
+}
+
+.status-pending {
+  background: rgba(210, 153, 34, 0.15);
+  color: var(--warning);
+}
+
+.job-card-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-edit,
+.btn-delete {
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+}
+
+.btn-edit:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(79, 142, 247, 0.08);
+}
+
+.btn-delete:hover {
+  border-color: var(--danger);
+  color: var(--danger);
+  background: rgba(248, 81, 73, 0.08);
+}
+
+.btn-edit:active,
+.btn-delete:active {
+  transform: scale(0.98);
+}
+
+.no-jobs-message {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  padding: 40px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  animation: list-slide-in 0.6s ease-out;
+}
+
+@media (max-width: 600px) {
+  .job-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px 20px;
+  }
+
+  .job-card-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .job-list-header {
+    margin-bottom: 16px;
+  }
+
+  .job-cards-container {
+    gap: 10px;
+  }
+}
+
