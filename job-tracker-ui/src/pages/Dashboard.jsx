@@ -4,10 +4,12 @@ import { useEffect, useState } from "react";
 import API from "../services/api";
 import JobForm from "../components/JobForm";
 import JobList from "../components/JobList";
+import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
   const [jobs, setJobs] = useState([]);
   const [editJob, setEditJob] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchJobs();
@@ -72,11 +74,19 @@ const updateJob = async (id, jobData) => {
   }
 };
 
+const handleLogout = () => {
+  localStorage.removeItem("token");
+  navigate("/");
+};
+
+  
+
 
   return (
     <div className="dashboard-page">
       <nav className="dashboard-navbar">
         <h1 className="navbar-title">Job Tracker</h1>
+        <button onClick={handleLogout}> Logout</button>
         <div className="navbar-avatar"></div>
       </nav>
       <div className="dashboard-container">
