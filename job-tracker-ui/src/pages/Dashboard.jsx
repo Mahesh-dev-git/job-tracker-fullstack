@@ -9,15 +9,19 @@ import { useNavigate } from "react-router-dom";
 function Dashboard() {
   const [jobs, setJobs] = useState([]);
   const [editJob, setEditJob] = useState(null);
+  const [search, setSearch] = useState("");
+  const [statusFilter, setStatusFilter] = useState("");
+  const [page, setPage] = useState(1);
+  const pageSize = 5;
   const navigate = useNavigate();
 
   useEffect(() => {
     fetchJobs();
-  }, []);
+  }, [search, statusFilter, page]);
 
  const fetchJobs = async () => {
   try {
-    const res = await API.get("/jobs");
+    const res = await API.get(`/jobs?search=${search}&status=${statusFilter}&page=${page}&pageSize=${pageSize}`);
 
     console.log("FULL RESPONSE:", res.data); // ADD THIS
 
@@ -86,7 +90,7 @@ const handleLogout = () => {
     <div className="dashboard-page">
       <nav className="dashboard-navbar">
         <h1 className="navbar-title">Job Tracker</h1>
-        <button onClick={handleLogout}> Logout</button>
+        <button className="navbar-logout-btn" onClick={handleLogout}>Logout</button>
         <div className="navbar-avatar"></div>
       </nav>
       <div className="dashboard-container">
@@ -99,11 +103,46 @@ const handleLogout = () => {
             />
           </aside>
           <main className="dashboard-main">
+             <div className="filters">
+  <input
+    type="text"
+    placeholder="Search jobs..."
+    value={search}
+    onChange={(e) => setSearch(e.target.value)}
+  />
+
+  <select
+    value={statusFilter}
+    onChange={(e) => setStatusFilter(e.target.value)}
+  >
+    <option value="">All</option>
+    <option value="Applied">Applied</option>
+    <option value="Interview">Interview</option>
+    <option value="Rejected">Rejected</option>
+    <option value="Active">Active</option>
+  </select>
+</div>
+
             <JobList 
               jobs={jobs} 
               onDelete={deleteJob} 
               onEdit={handleEdit}
+              
             />
+            <div className="pagination">
+  <button
+    onClick={() => setPage(page - 1)}
+    disabled={page === 1}
+  >
+    Prev
+  </button>
+
+  <span>Page {page}</span>
+
+  <button onClick={() => setPage(page + 1)}>
+    Next
+  </button>
+</div>
           </main>
         </div>
       </div>

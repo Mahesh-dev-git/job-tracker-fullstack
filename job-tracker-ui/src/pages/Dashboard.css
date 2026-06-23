@@ -63,6 +63,32 @@ html, body, #root {
   border: 1px solid var(--border);
 }
 
+.navbar-logout-btn {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  transition: all 0.2s ease;
+  margin-right: 16px;
+}
+
+.navbar-logout-btn:hover {
+  background: rgba(248, 81, 73, 0.12);
+  border-color: var(--danger);
+  color: var(--danger);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(248, 81, 73, 0.15);
+}
+
+.navbar-logout-btn:active {
+  transform: translateY(0);
+}
+
 .dashboard-container {
   flex: 1;
   max-width: 1200px;
@@ -128,6 +154,197 @@ html, body, #root {
 
   .navbar-title {
     font-size: 1.25rem;
+  }
+}
+
+/* Filters Section Styling */
+.filters {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  align-items: center;
+  animation: filters-slide-in 0.6s ease-out 0.3s both;
+  flex-wrap: wrap;
+}
+
+@keyframes filters-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.filters input[type="text"],
+.filters select {
+  background: var(--surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 0.95rem;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  outline: none;
+  transition: all 0.2s ease;
+  flex: 1;
+  min-width: 140px;
+}
+
+.filters input[type="text"]::placeholder {
+  color: var(--text-muted);
+}
+
+.filters input[type="text"]:focus,
+.filters select:focus {
+  border-color: var(--accent);
+  background: rgba(79, 142, 247, 0.05);
+  box-shadow: 0 0 0 3px rgba(79, 142, 247, 0.15);
+}
+
+.filters input[type="text"]:hover,
+.filters select:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.filters select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238b949e' d='M1.5 4.5L6 9l4.5-4.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
+  cursor: pointer;
+}
+
+.filters select option {
+  background: var(--surface);
+  color: var(--text-primary);
+}
+
+/* Pagination Section Styling */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  animation: pagination-fade-in 0.6s ease-out 0.35s both;
+}
+
+@keyframes pagination-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.pagination button {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  transition: all 0.2s ease;
+  min-width: 80px;
+}
+
+.pagination button:hover:not(:disabled) {
+  background: rgba(79, 142, 247, 0.12);
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(79, 142, 247, 0.15);
+}
+
+.pagination button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.pagination button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  border-color: rgba(255, 255, 255, 0.04);
+}
+
+.pagination span {
+  color: var(--text-primary);
+  font-weight: 500;
+  font-size: 0.95rem;
+  min-width: 70px;
+  text-align: center;
+}
+
+/* Responsive adjustments for filters and pagination */
+@media (max-width: 768px) {
+  .filters {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .filters input[type="text"],
+  .filters select {
+    width: 100%;
+  }
+
+  .pagination {
+    gap: 12px;
+  }
+
+  .pagination button {
+    min-width: 70px;
+    padding: 8px 12px;
+    font-size: 0.85rem;
+  }
+
+  .pagination span {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .filters {
+    flex-direction: column;
+    margin-bottom: 16px;
+  }
+
+  .filters input[type="text"],
+  .filters select {
+    width: 100%;
+    font-size: 16px;
+  }
+
+  .pagination {
+    flex-direction: column;
+    gap: 8px;
+    padding-top: 16px;
+    margin-top: 16px;
+  }
+
+  .pagination button,
+  .pagination span {
+    width: 100%;
+  }
+
+  .pagination button {
+    min-width: auto;
+  }
+
+  .navbar-logout-btn {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    margin-right: 8px;
   }
 }
 
