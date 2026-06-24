@@ -33,11 +33,39 @@ namespace JobTrackerAPI.Services
             await _context.SaveChangesAsync();
             return deleteJob;
         }
-        
 
-        public async Task<List<JobDto>> GetAllJobs()
+
+        public async Task<List<JobDto>> GetAllJobs(
+    int userId,
+    string? search,
+    string? status,
+      int page,
+      int pageSize)
         {
-            var jobs = await _context.Jobs.ToListAsync();
+            Console.WriteLine("SEARCH = " + search);
+            Console.WriteLine("STATUS = " + status);
+
+            var query = _context.Jobs
+     .Where(j => j.UserId == userId)
+     .AsQueryable();
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                query = query.Where(j =>
+            j.Company.ToLower().Contains(search.ToLower()) ||
+            j.Position.ToLower().Contains(search.ToLower()));
+            }
+
+            if (!string.IsNullOrEmpty(status))
+            {
+                query = query.Where(j =>
+             j.Status.ToLower() == status.ToLower());
+            }
+
+            query = query
+    .Skip((page - 1) * pageSize)
+    .Take(pageSize);
+            var jobs = await query.ToListAsync();
             return jobs.Select(j => new JobDto
             {
                 Id = j.Id,

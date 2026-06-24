@@ -21,10 +21,14 @@ public class JobsController : ControllerBase
 
 
     [HttpGet]
-    public async Task<IActionResult> GetJobs()
+    public async Task<IActionResult> GetJobs(
+        string? search,
+    string? status,
+     int page = 1,
+    int pageSize = 5)
     {
         var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
-        var jobs = await _jobService.GetAllJobs();
+        var jobs = await _jobService.GetAllJobs(userId,search, status ,page,pageSize);
         return Ok(jobs);
     }
 
